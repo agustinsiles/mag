@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <ul class="col-md-12 list-group">
+      <li class="list-group-item" ng-repeat="category in ctrl.categories | orderBy:'name'">
+        <span ng-repeat="ancestor in category.ancestors track by $index" class="parent-category">
+          <a ng-if="ctrl.Auth.hasModulePermission('category')['update']" ui-sref="categories.edit({ id: ancestor.id })" ng-click="ctrl.openModal(ancestor, false)">{{::ancestor.name}}</a>
+          <span ng-if="!ctrl.Auth.hasModulePermission('category')['update']">{{::ancestor.name}}</span>
+          &raquo;
+        </span>
+        <a ng-if="ctrl.Auth.hasModulePermission('category')['update']" ui-sref="categories.edit({ id: category.id })" ng-click="ctrl.openModal(category, false)">{{::category.name}}</a>
+        <span ng-if="!ctrl.Auth.hasModulePermission('category')['update']">{{::category.name}}</span>
+
+        <span class="badge" ng-if="ctrl.Auth.hasModulePermission('category')['update']">
+          <span ui-sref="categories.edit({ id: category.id })"
+                ng-click="ctrl.openModal(category, false)"
+                class="glyphicon glyphicon-pencil"></span>
+        </span>
+        <span class="badge" ng-if="ctrl.Auth.hasModulePermission('category')['delete']">
+          <span class="delete-button" ng-click="ctrl.deleteCategoryModal(category)">X</span>
+        </span>
+      </li>
+      <li class="list-group-item" ng-if="ctrl.Auth.hasModulePermission('category')['create']">
+        <button class="btn btn-default btn-primary"
+          ui-sref="categories.add({})"
+          ng-click="ctrl.openModal(false, false)">Add Category</button>
+      </li>
+    </ul>
+  </div>
+</div>

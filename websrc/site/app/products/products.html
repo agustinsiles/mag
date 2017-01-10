@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-3">
+    <p class="lead">Categorias</p>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="category in ctrl.categoryList | orderBy:'name'">
+        <a ui-sref=".results({'catId': category.id})" ui-sref-opts="{reload: true}">{{category.name}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <div ui-view></div>
+  </div>
+</div>

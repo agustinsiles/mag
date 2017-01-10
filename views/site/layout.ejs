@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <title>Public App</title>
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--STYLES-->
+    <link rel="stylesheet" href="/site/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/site/assets/css/result.css">
+    <!--STYLES END-->
+  </head>
+  <body>
+    <%- body %>
+    <!--SCRIPTS-->
+    <script src="/dependencies/socket.io.js"></script>
+    <script src="/dependencies/bower_components/angular/angular.min.js"></script>
+    <script src="/dependencies/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/dependencies/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="/dependencies/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="/dependencies/bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="/dependencies/bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="/dependencies/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="/dependencies/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/dependencies/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/dependencies/bower_components/jquery/dist/jquery.slim.min.js"></script>
+    <script src="/dependencies/bower_components/jquery/external/sizzle/dist/sizzle.min.js"></script>
+    <script src="/dependencies/bower_components/ng-file-upload/FileAPI.min.js"></script>
+    <script src="/dependencies/bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
+    <script src="/dependencies/bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="/dependencies/bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="/dependencies/bower_components/ng-lodash/build/ng-lodash.min.js"></script>
+    <script src="/dependencies/bower_components/ngtoast/dist/ngToast.min.js"></script>
+    <script src="/site/app.js"></script>
+    <script src="/site/config/accessLevels.js"></script>
+    <script src="/site/app/index/indexController.js"></script>
+    <script src="/site/app/products/productDetailController.js"></script>
+    <script src="/site/app/products/productsController.js"></script>
+    <script src="/site/app/products/productsResultsController.js"></script>
+    <script src="/site/app/products/productsService.js"></script>
+    <script src="/site/app/users/loginController.js"></script>
+    <script src="/site/config/routes.js"></script>
+    <script src="/site/directives/ngcart/ngCart.directives.js"></script>
+    <script src="/site/directives/ngcart/ngCart.fulfilment.js"></script>
+    <script src="/site/directives/ngcart/ngCart.js"></script>
+    <script src="/site/factories/authenticationInterceptor.js"></script>
+    <script src="/site/factories/currentUser.js"></script>
+    <script src="/site/services/authenticationService.js"></script>
+    <!--SCRIPTS END-->
+
+    <!--TEMPLATES-->
+    <script type="text/javascript" src="/templates.js"></script>
+    <!--TEMPLATES END-->
+  </body>
+</html>

@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="prod in ctrl.productsList">
+    <div class="thumbnail">
+      <img src="http://placehold.it/320x150" alt="">
+      <div class="caption">
+        <h4 class="pull-right">$24.99</h4>
+        <h4><a ui-sref="products.details({'prodId': prod.id})">{{prod.name}}</a></h4>
+        <p>See more snippets like this online store item at</p>
+      </div>
+    </div>
+  </div>
+</div>

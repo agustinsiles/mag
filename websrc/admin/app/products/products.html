@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <ul class="col-md-12 list-group">
+      <li class="list-group-item" ng-repeat="product in ctrl.products | orderBy:'name'">
+        <img ng-src="../uploads/{{product.image.uri}}" style="width: 50px; height: 50px;">
+        {{product.name}} - <a ui-sref="categories">{{product.category.name}}</a>
+
+        <span class="badge" ng-if="ctrl.Auth.hasModulePermission('product')['update']">
+          <span ui-sref="products.edit({ id: product.id })"
+                ng-click="ctrl.openModal(product, true)"
+                class="glyphicon glyphicon-pencil"></span>
+        </span>
+        <span class="badge" ng-if="ctrl.Auth.hasModulePermission('product')['delete']">
+          <span class="delete-button"
+                ng-click="ctrl.deleteProduct(product)">X</span>
+        </span>
+      </li>
+      <li class="list-group-item" ng-if="ctrl.Auth.hasModulePermission('product')['create']">
+        <button
+          class="btn btn-default btn-primary"
+          ui-sref="products.add({})"
+          ng-click="ctrl.openModal(undefined, true)">Add Product</button>
+      </li>
+    </ul>
+  </div>
+</div>

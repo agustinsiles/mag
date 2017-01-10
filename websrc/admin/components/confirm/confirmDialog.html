@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{::ctrl.options.text}}</h3>
+</div>
+<div class="modal-footer">
+  <button
+    ng-repeat="button in ctrl.options.buttons"
+    class="{{button.styles}}"
+    type="button"
+    ng-click="button.action()">{{::button.text}}</button>
+</div>

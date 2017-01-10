@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <ul class="col-md-12 list-group">
+      <li class="list-group-item" ng-repeat="user in ctrl.users | orderBy:'email'">
+        <a ui-sref="users.edit({ id: user.id })"
+          ng-click="ctrl.openModal(user, false)">{{::user.email}}</a>
+
+        <a ng-if="ctrl.auth.getCurrentUser().id === user.id" ng-click="ctrl.openModal(user, true)" class="pull-right">Change password</a>
+        <span class="badge">
+          <span ui-sref="users.edit({ id: user.id })"
+                ng-click="ctrl.openModal(user, false)"
+                class="glyphicon glyphicon-pencil"></span>
+        </span>
+        <span class="badge">
+          <span class="delete-button" ng-click="ctrl.removeUser(user)">X</span>
+        </span>
+      </li>
+      <li class="list-group-item">
+        <button class="btn btn-default btn-primary"
+          ui-sref="users.add({})"
+          ng-click="ctrl.openModal(null, false)">Add User</button>
+      </li>
+    </ul>
+  </div>
+</div>

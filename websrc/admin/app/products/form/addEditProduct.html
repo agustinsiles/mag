@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h3 class="modal-title">Add Product</h3>
+</div>
+
+<div class="modal-body">
+  <form name="productForm" novalidate>
+    <!-- PRODUCT NAME -->
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" ng-model="ctrl.product.name" required />
+    <div ng-messages="productForm.name.$error" ng-if="productForm.name.$touched">
+      <p ng-message="required">Product name is required.</p>
+    </div>
+    <!-- PRODUCT CATEGORY -->
+    <label for="category">Category</label>
+    <select
+      ng-options="cat as cat.name for cat in ctrl.categories track by cat.id"
+      ng-model="ctrl.product.category"
+      name="category"
+      id="category"
+      required>
+    </select>
+    <div ng-messages="productForm.category.$error" ng-if="productForm.category.$touched">
+      <p ng-message="required">Category is required.</p>
+    </div>
+    <!-- PRODUCT PRICE -->
+    <label for="price">Price</label>
+    <input type="number" id="price" ng-model="ctrl.product.price">
+    <!-- PRODUCT STOCK -->
+    <label for="stock">Stock</label>
+    <input type="text" id="stock" ng-model="ctrl.product.stock">
+    <!-- FILE UPLOAD -->
+    <div class="row">
+      <div ng-repeat="file in ctrl.product.productImages track by $index">
+        <img ng-src="{{ctrl.path + file.uri}}" style="width:25px; height: 25px;">
+        <input type="radio" ng-value="file" ng-model="ctrl.product.mainImage" name="mainImg">
+        <input type="text" ng-model="file.description" /><br>
+        <span class="badge">
+          <span class="delete-button" ng-click="ctrl.removeImageFromList(file)">X</span>
+        </span>
+      </div>
+      <div ng-repeat="file in ctrl.filesToUpload track by $index">
+        <img style="width:25px; height: 25px" ngf-src="file">
+        <input type="radio" ng-value="file" ng-model="ctrl.product.mainImage" name="mainImg">
+        <input type="text" ng-model="file.description" /><br>
+        <span class="badge">
+          <span class="delete-button" ng-click="ctrl.removeImageFromList(file)">X</span>
+        </span>
+      </div>
+      <div ngf-select ng-model="files" ngf-multiple="true" ngf-drop class="drop-box">Select</div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-disabled="productForm.$invalid || ctrl.disabled" type="button" ng-click="ctrl.addEditProduct()">OK</button>
+  <button class="btn btn-warning" ng-disabled="ctrl.disabled" type="button" ng-click="ctrl.closeModal()">Cancel</button>
+</div>

@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h3 class="modal-title">Edit Category</h3>
+</div>
+<div class="modal-body">
+  <form name="categoryForm" novalidate>
+    <!-- CATEGORY NAME -->
+    <label for="name">Name</label>
+    <input type="text" ng-model="ctrl.category.name" id="name" name="name" required/>
+    <div ng-messages="categoryForm.name.$error" ng-if="categoryForm.name.$touched">
+      <p ng-message="required">Category name is required.</p>
+    </div>
+    <!-- PARENT CATEGORY -->
+    <label for="parent">Parent Category</label>
+    <select
+      id="parent"
+      ng-options="cat as cat.name for cat in ctrl.categories track by cat.id"
+      ng-model="ctrl.category.parentCategory">
+    </select>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-disabled="categoryForm.$invalid || ctrl.disabled" type="button" ng-click="ctrl.addEditCategory()">OK</button>
+  <button class="btn btn-warning" ng-disabled="ctrl.disabled" type="button" ng-click="ctrl.closeModal()">Cancel</button>
+</div>

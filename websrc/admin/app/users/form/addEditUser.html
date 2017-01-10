@@ -1,0 +1,72 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{ctrl.isEditing ? 'Update' : 'Create'}} user</h3>
+</div>
+<div class="modal-body">
+  <form name="userForm" novalidate>
+    <!-- USER FIRST NAME -->
+    <label for="firstName">First Name</label>
+    <input type="text" ng-model="ctrl.user.firstName" id="firstName" name="firstName" required/>
+    <div ng-messages="userForm.firstName.$error" ng-if="userForm.firstName.$touched">
+      <p ng-message="required">User's first name is required.</p>
+    </div>
+    <!-- USER LAST NAME -->
+    <label for="lastName">Last Name</label>
+    <input type="text" ng-model="ctrl.user.lastName" id="lastName" name="lastName" required/>
+    <div ng-messages="userForm.lastName.$error" ng-if="userForm.lastName.$touched">
+      <p ng-message="required">User's last name is required.</p>
+    </div>
+    <!-- USER EMAIL -->
+    <label for="email">E-Mail</label>
+    <input type="email" ng-model="ctrl.user.email" id="email" name="email" required/>
+    <div ng-messages="userForm.email.$error" ng-if="userForm.email.$touched">
+      <p ng-message="required">User's email is required.</p>
+    </div>
+    <!-- USER PASSWORD -->
+    <div ng-if="!ctrl.isEditing">
+      <label for="password">Password</label>
+      <input type="password" ng-model="ctrl.user.password" id="password" name="password" required/>
+      <div ng-messages="userForm.password.$error" ng-if="userForm.password.$touched">
+        <p ng-message="required">User's password is required.</p>
+      </div>
+
+      <label for="password2">Confirm Password</label>
+      <input type="password" ng-model="ctrl.repeatPassword" id="password2" name="password2" required/>
+      <span ng-show="userForm.password.$touched && userForm.password2.$touched && ctrl.user.password !== ctrl.repeatPassword">
+        Passwords don't match
+      </span>
+    </div>
+
+    <!-- IS USER ADMIN? -->
+    <label for="admin">Is Admin?</label>
+    <input type="checkbox" ng-model="ctrl.user.isAdmin" id="admin" />
+    <!-- PERMISSIONS -->
+    <div ng-show="ctrl.user.isAdmin">
+      <label for="Permission">Permissions</label>
+      <span ng-show="!ctrl.user.permissions.length">User has no permissions yet.</span><br>
+      <div ng-repeat="permission in ctrl.user.permissions track by $index">
+        <label>Module</label>
+        <select
+          ng-model="permission.module"
+          ng-change="ctrl.setAvailableModules()">
+          <option ng-repeat="module in ctrl.modules track by $index" ng-disabled="module.disabled" ng-value="module.name">{{module.name}}</option>
+        </select><span ng-click="ctrl.removePermission($index)">X</span><br>
+
+        <label for="create">Create
+          <input type="checkbox" ng-model="permission.create"/>
+        </label><br>
+        <label for="update">Update
+          <input type="checkbox" ng-model="permission.update"/>
+        </label><br>
+        <label for="delete">Delete
+          <input type="checkbox" ng-model="permission.delete"/>
+        </label><br>
+      </div>
+      <button ng-click="ctrl.addPermission()" ng-hide="ctrl.modules.length === ctrl.user.permissions.length">NEW PERMISSION</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-disabled="userForm.$invalid || ctrl.disabled || ctrl.user.password !== ctrl.repeatPassword" type="button" ng-click="ctrl.addEditUser()">OK</button>
+  <button class="btn btn-warning" ng-disabled="ctrl.disabled" type="button" ng-click="ctrl.closeModal()">Cancel</button>
+</div>
